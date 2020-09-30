@@ -28,15 +28,16 @@ class MainViewModel : ViewModel() {
         override fun onUEvent(uEvnet: UEvent?) {
             if (uEvnet == null) return
             val result = uEvnet.get(SUBSYSTEM) ?: ""
+            val cardNumber = uEvnet.get(ID_CARD) ?: ""
             Timber.d("onUEvent date: 2019-12-25 result: $result ")
             viewModelScope.launch(Dispatchers.Main) {
                 _uEventMessage.value = uEvnet.toString()
-                if (result.startsWith("serio")) {
+                if (result.contains("serio")) {
                     //串口
-                    _wgNumber.value = result.replace("serio", "")
-                } else if (result.startsWith("misc")) {
+                    _uartNumber.value = cardNumber
+                } else if (result.contains("misc")) {
                     //韦根
-                    _uartNumber.value = result.replace("misc", "")
+                    _wgNumber.value = cardNumber
                 }
             }
         }
@@ -49,6 +50,7 @@ class MainViewModel : ViewModel() {
 
     companion object {
         const val SUBSYSTEM = "SUBSYSTEM"
+        const val ID_CARD = "ID_CARD"
         const val WG_MATCH = "DEVPATH=/devices/virtual/misc/wiegand_dev"
         const val UART_MATCH = "DEVPATH=/devices/virtual/tty/ttysWK2/serio0"
     }
