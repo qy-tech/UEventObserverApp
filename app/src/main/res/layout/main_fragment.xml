@@ -16,39 +16,27 @@
         android:layout_height="match_parent"
         tools:context=".ui.main.MainFragment">
 
-        <Button
-            android:id="@+id/message"
+        <TextView
+            android:id="@+id/tv_wg_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> viewmodel.onGpioClick()}"
-            android:text="@{viewmodel.gpioSwitch}"
+            android:text="@{viewmodel.wgNumber}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/switch_status" />
+            tools:text="@string/app_name" />
 
         <TextView
-            android:id="@+id/tv_switch_one"
+            android:id="@+id/tv_uart_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="@{@string/switch_status(1,viewmodel.switchOneStatus)}"
-            app:layout_constraintBottom_toTopOf="@id/tv_switch_two"
+            android:layout_marginTop="16dp"
+            android:text="@{viewmodel.uartNumber}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="@string/switch_status" />
-
-        <TextView
-            android:id="@+id/tv_switch_two"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="@{@string/switch_status(2,viewmodel.switchTwoStatus)}"
-            app:layout_constraintBottom_toTopOf="@id/message"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="@string/switch_status" />
+            app:layout_constraintTop_toBottomOf="@id/tv_wg_number"
+            tools:text="@string/app_name" />
 
         <TextView
             android:id="@+id/tv_uevent_message"
